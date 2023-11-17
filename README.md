@@ -1,38 +1,53 @@
-# operations.py:
-def add(num_1, num_2):
-    result = num_1 + num_2
-    print(f'{num_1} + {num_2} is equal to {result}')
-    return result
+# init.py:
 
-def subtract(num_1, num_2):
-    result = num_1 - num_2
-    print(f'{num_1} - {num_2} is equal to {result}')
-    return result
+from operations import add, subtract, multiply, divide, power, modulus
 
-def multiply(num_1, num_2):
-    result = num_1 * num_2
-    print(f'{num_1} * {num_2} is equal to {result}')
-    return result
+def game():
+    score = 0
+    while True:
+        print('======== Menu ========'
+              '\n1. Add'
+              '\n2. Subtract'
+              '\n3. Multiply'
+              '\n4. Divide'
+              '\n5. Power'
+              '\n6. Modulus'
+              '\n0. Exit')
+        option = int(input('\nChoose an option: '))
+        if option == 0:
+            break
+        num_1 = int(input('Enter first number: '))
+        num_2 = int(input('Enter second number: '))
+        answer = int(input('Enter your answer: '))
 
-def divide(num_1, num_2):
-    if num_2 != 0:
-        result = num_1 / num_2
-        print(f'{num_1} / {num_2} is equal to {result}')
-        return result
-    else:
-        print('Cannot divide by zero!')
-        return None
+        if option == 1:
+            result = add(num_1, num_2)
+        elif option == 2:
+            result = subtract(num_1, num_2)
+        elif option == 3:
+            result = multiply(num_1, num_2)
+        elif option == 4:
+            result = divide(num_1, num_2)
+        elif option == 5:
+            result = power(num_1, num_2)
+        elif option == 6:
+            result = modulus(num_1, num_2)
 
-def power(num_1, num_2):
-    result = num_1 ** num_2
-    print(f'{num_1} ^ {num_2} is equal to {result}')
-    return result
+        if result == answer:
+            if option in [1, 2]:
+                score += 1
+            elif option in [3, 4]:
+                score += 2
+            elif option in [5, 6]:
+                score += 4
+            print('Correct!!')
+        else:
+            print('Incorrect')
 
-def modulus(num_1, num_2):
-    if num_2 != 0:
-        result = num_1 % num_2
-        print(f'{num_1} % {num_2} is equal to {result}')
-        return result
-    else:
-        print('Cannot calculate modulus with zero!')
-        return None
+    print(f'======== Game Over ========'
+          f'\nYour score is {score}'
+          '\nKeep going!')
+
+if __name__ == "__main__":
+    game()
+
